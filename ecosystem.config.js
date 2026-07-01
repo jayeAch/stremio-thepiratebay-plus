@@ -2,11 +2,18 @@ module.exports = {
   apps: [{
     name: "thepiratebay-plus",
     script: "index.js",
-    instances: "max",
-    exec_mode: "cluster",
+    out_file: "/dev/null",
+    error_file: "/dev/null",
+    instances: "1",
+    exec_mode: "fork",
+    watch: false,
+    autorestart: true,
+    restart_delay: 3000,
+    max_restarts: 10,
     node_args: [
-      "--max-old-space-size=768",
-      "--max-semi-space-size=64",
+      "--max-old-space-size=128",
+      "--max-semi-space-size=8",
+      "--optimize-for-size",
     ],
     env: {
       NODE_ENV: "production"
